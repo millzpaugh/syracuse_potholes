@@ -1,0 +1,73 @@
+body { margin:0; 
+    padding:0;
+     }
+
+header{
+  background:url('http://www.osceolagarage.com/wp-content/uploads/2015/03/pothole2.jpg');
+  background-color:#333333;
+  padding:50px;
+  margin:0px;
+  color:white;
+  text-shadow: 2px 0px lightgray;
+  height:80%;
+  border:none;
+  z-index:1;
+  font-family:'Raleway';
+}
+
+img.title{
+  width:70%;
+  height:70%;
+  border-radius:10%;
+}
+
+.info {
+margin-top:330px;
+margin-right:15px;
+background:#fff;
+position:absolute;
+width:260px;
+top:10px;
+right:10px;
+border-radius:2px;
+box-shadow: 0 1px 2px rgba(0,70,0,0.20); 
+z-index: 1;
+
+}
+
+#info{
+  height:400px; width:18%;
+  overflow-y:scroll;
+}
+
+.info .item {
+  display:block;
+  border-bottom:1px solid #eee;
+  padding:5px;
+  text-decoration:none;
+  }
+
+.info .item small { color:#888; }
+.info .item:hover,
+.info .item.active { background:#f8f8f8; }
+.info .item:last-child { border-bottom:none; }
+
+a.item{
+  overflow: auto;
+}
+
+.legend{
+  list-style-type: none;
+  font-weight: bold;
+}
+
+span{
+  color:red;
+}
+
+#map { position:absolute;top:0;bottom:0; height:700px;width:70%;margin-top:340px; }
+
+/*@media(max-width:500px){
+  #map { position:absolute;top:0;bottom:0; height:100%;width:100%;margin-top:100px;}
+
+}*/

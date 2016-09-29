@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+
+  <head>
+  <meta charset=utf-8 />
+  <title>TMF Farm Team</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  </head>
+
+  <body>
+    <header>
+    <div class='col12 clearfix'>
+            <div class="row">
+                <div style="padding=30px;" class="col-sm-10 col-xs-offset-1 text-block">
+                  <br><br>
+          <h1>Syracuse Pothole Recovery: How many potholes have been fixed in your neighborhood?</h1><br><br><br>
+                </div>
+            </div>
+    </div>
+    </header>
+        <hr>
+
+
+    <div class='col12 clearfix'>
+      <div class='col3 pad2 mobile-cols clearfix fill-grey'>
+
+        <div class='fill-white prose prose-small pad2 round'>
+
+        <h3>Find Pothole Repairs</h3>
+               {% if not post %}
+
+        <p>Type in a location to find pothole repairs near you!</p>
+                <form action="{% url 'search' %}" method="post" >
+                    <fieldset >
+                    {%  for f in form%}
+                        {% csrf_token %}
+                    <div class="row">
+                        <label >{{ f.label }}</label>
+                        <input name="{{ f.name }}" type="text" class="form-control" rows="0" placeholder={{ f.label }}>
+                        {% if f.errors %}
+                            <div class="control-group error">
+                                <div class="controls">
+                                        <span style="color:red;" class="col-md-12 col-md-offset-0 help-inline">
+                                                {{ f.errors }}
+                                        </span>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                        <br>
+                     </div>
+                    </fieldset>
+                    {% endfor %}
+
+
+                     <button style='margin:20px;' type="submit" class="btn btn-primary btn-lg login-btn">
+                     Search</button>
+
+                </form>
+                {% else %}
+
+                 <p>There are {{players}} TMF players within {{radius}} miles of your searched location.</p>
+                     <br>
+
+                 <a href="{% url 'search' %}">Return to Search</a>
+                {% endif %}
+
+
+        <hr>
+
+        </div>
+
+          </div>
+
+      <div class='margin0 col6 '>
+
+          <div id='map'></div>
+          <div id='info' class='info'><h4 style="padding:14px;">Potholes Fixed</h4></div>
+
+      </div>
+      </div>
+
+
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <script src="{% static 'js/map.js' %}"></script>
+
+    <script type="text/javascript">
+        L.mapbox.accessToken = 'pk.eyJ1IjoibWlsbHpwYXVnaCIsImEiOiJjaWxzbWtzdHYwMDJndTlrcmZzZHNlMjBuIn0.Zw-IWCL1tBvlh5NKKKlTsg';
+
+        var geodata = {{geodata|safe}}
+
+        var center = {{center|safe}}
+
+        $(document).ready(function($) {
+            createMap(geodata, center);
+        });
+
+
+    </script>
+  </body>
+
+</html>
