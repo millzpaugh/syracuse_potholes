@@ -43,8 +43,7 @@ function createMarkerMap(data, center){
 
     var markers = data
 
-    var map = L.mapbox.map('map', 'mapbox.streets')
-    .setView(center, 16)
+    var map = L.mapbox.map('map', 'mapbox.streets').setView(center, 12)
 
     var geojson = data 
 
@@ -73,6 +72,11 @@ function createMarkerMap(data, center){
               .replace(/active/, '').replace(/\s\s*$/, '');
           };
           this.className += ' active';
+
+          // When a menu item is clicked, animate the map to center
+          // its associated marker and open its popup.
+          map.panTo(marker.getLatLng());
+          marker.openPopup();
         }
         return false;
         };
