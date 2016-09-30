@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, redirect
 
 
 class MapSearchForm(forms.Form):
-    location = forms.CharField(required=True, label="Enter a Location in Syracuse", widget=forms.TextInput(attrs={'placeholder': 'Enter Location: 116 Avondale St'})
+    location = forms.CharField(required=True, label="Enter an Address in Syracuse", widget=forms.TextInput(attrs={'placeholder': 'ex 116 Avondale St'})
     )
     radius = forms.IntegerField(required=False, label="Radius (optional, defaults to 2 miles)", widget=forms.TextInput(attrs={'placeholder': 'Radius'})
     )
@@ -20,4 +20,4 @@ class MapSearchForm(forms.Form):
         except:
             msg = "Oops! We couldn't find that location."
             self.add_error("location", msg)
-            return redirect('map-search')
+            return redirect('search')
