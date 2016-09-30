@@ -5,9 +5,9 @@ from django.shortcuts import render_to_response, redirect
 
 
 class MapSearchForm(forms.Form):
-    location = forms.CharField(required=True, label="Enter a Location", widget=forms.TextInput(attrs={'placeholder': 'Enter a location'})
+    location = forms.CharField(required=True, label="Enter a Location in Syracuse", widget=forms.TextInput(attrs={'placeholder': 'Enter Location: 116 Avondale St'})
     )
-    radius = forms.IntegerField(required=False, label="Radius (optional, defaults to 1 mile)", widget=forms.TextInput(attrs={'placeholder': 'Radius'})
+    radius = forms.IntegerField(required=False, label="Radius (optional, defaults to 2 miles)", widget=forms.TextInput(attrs={'placeholder': 'Radius'})
     )
 
     def clean(self):

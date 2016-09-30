@@ -31,10 +31,10 @@ class MapSearchView(View):
     def post(self, request, *args, **kwargs):
         form = MapSearchForm(request.POST)
         geodata = []
-        radius = 1
+        radius = 2
         if form.is_valid():
             form_data = form.cleaned_data
-            location = form_data['location']
+            location = form_data['location'] + ',Syracuse,NY'
             if form_data['radius']:
                 radius = form_data['radius']
 
@@ -47,22 +47,22 @@ class MapSearchView(View):
             locations = Location.objects.all()
             pothole_locations = []
             for l in locations:
-                player_location = geopy.Point(l.latitude, l.longitude)
-                if geopy.distance.distance(geocenter, player_location).miles < radius and l.address:
+                pothole_location = geopy.Point(l.latitude, l.longitude)
+                if geopy.distance.distance(geocenter, pothole_location).miles < radius:
                     pothole_locations.append(l)
 
-            geodata = [{'properties':{'title': l.player.tmf_name, 'description': 'TMF Player!',  'marker-symbol': 'pitch'}, 'geometry': {'coordinates': [l.latitude, l.longitude], 'type': 'Point'}, 'type': 'Feature'} for l in pothole_locations]
+            geodata = [{'properties':{'title': l.id,'description': 'Pothole Filled! @ ' + str(l.latitude) + '' + str(l.longitude),  'marker-symbol': 'pitch'}, 'geometry': {'coordinates': [l.latitude, l.longitude], 'type': 'Point'}, 'type': 'Feature'} for l in pothole_locations]
 
             return render(request,  self.template, {'geodata':geodata,
                                                 'center':center,
                                                 'post':True,
-                                                'players':len(player_locations),
+                                                'players':len(pothole_locations),
                                                 'radius':radius})
         else:
-            alexandria = [38.9047, -77.0164]
+            syracuse = [43.0481, -76.1474]
 
             return render(request,  self.template, {'form':form,
-                                                'center':alexandria,
+                                                'center':syracuse,
                                                 'geodata':geodata,
                                                 'post':False})
 

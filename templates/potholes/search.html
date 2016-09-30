@@ -68,7 +68,7 @@
                 </form>
                 {% else %}
 
-                 <p>There are {{players}} TMF players within {{radius}} miles of your searched location.</p>
+                 <p>There are {{players}} potholes that have been filled within {{radius}} miles of your searched location.</p>
                      <br>
 
                  <a href="{% url 'search' %}">Return to Search</a>
@@ -102,8 +102,8 @@
         var center = {{center|safe}}
 
         $(document).ready(function($) {
-            createMap(geodata, center);
-        });
+              createMap(geodata, center);
+        }); 
 
 
     </script>
