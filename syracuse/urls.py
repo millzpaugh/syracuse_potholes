@@ -19,6 +19,6 @@ from potholes import urls as potholes_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^p/', include('potholes.urls'))
+    url(r'^', include('potholes.urls'))
 
 ]
