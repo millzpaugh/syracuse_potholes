@@ -51,7 +51,7 @@ class MapSearchView(View):
                 if geopy.distance.distance(geocenter, pothole_location).miles < radius:
                     pothole_locations.append(l)
 
-            geodata = [{'properties':{'title': l.id,'description': 'Pothole Filled! @ ' + str(l.latitude) + '' + str(l.longitude),  'marker-symbol': 'pitch'}, 'geometry': {'coordinates': [l.latitude, l.longitude], 'type': 'Point'}, 'type': 'Feature'} for l in pothole_locations]
+            geodata = [{'properties':{'title': l.id,'description': 'Pothole Filled! @ ' + str(l.latitude) + '' + str(l.longitude),  'marker-symbol': 'car'}, 'geometry': {'coordinates': [l.longitude, l.latitude], 'type': 'Point'}, 'type': 'Feature'} for l in pothole_locations]
 
             return render(request,  self.template, {'geodata':geodata,
                                                 'center':center,
