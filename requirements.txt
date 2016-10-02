@@ -2,5 +2,6 @@ Django==1.10.1
 dj-database-url==0.4.1
 geopy==1.11.0
 gunicorn==19.6.0
+psycopg2==2.6.1
 whitenoise==3.2.2
 wsgiref==0.1.2
