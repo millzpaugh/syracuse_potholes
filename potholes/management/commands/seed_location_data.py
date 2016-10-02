@@ -5,7 +5,6 @@ from os.path import dirname, realpath
 from potholes.models import Location
 import geopy
 import logging
-import xlrd 
 
 logger = logging.getLogger(__name__)
 
