@@ -3,3 +3,5 @@
 .ipynb_checkpoints/
 .env
 *.sqlite3
+staticfiles
+venv
